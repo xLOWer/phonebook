@@ -1,0 +1,25 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:phoneapp1"
+        xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors" x:Class="phoneapp1.AddPeople"
+        mc:Ignorable="d"
+        Title="AddPeople" Height="210" Width="300">
+    <Grid>
+        <TextBlock x:Name="textBlock_Id" HorizontalAlignment="Left" Margin="10,11,0,0" TextWrapping="Wrap" Text="Id" VerticalAlignment="Top"/>
+        <TextBlock x:Name="textBlock_Name" HorizontalAlignment="Left" Margin="10,34,0,0" TextWrapping="Wrap" Text="Name" VerticalAlignment="Top"/>
+        <TextBlock x:Name="textBlock_Patronymic" HorizontalAlignment="Left" Margin="10,57,0,0" TextWrapping="Wrap" Text="Patronymic" VerticalAlignment="Top"/>
+        <TextBlock x:Name="textBlock_LastName" HorizontalAlignment="Left" Margin="10,80,0,0" TextWrapping="Wrap" Text="LastName" VerticalAlignment="Top"/>
+        <TextBlock x:Name="textBlock_Phone" HorizontalAlignment="Left" Margin="10,103,0,0" TextWrapping="Wrap" Text="Phone" VerticalAlignment="Top"/>
+
+        <dxe:TextEdit x:Name="textBox_Id" HorizontalAlignment="Left" Margin="83,11,0,0" Text="{Binding People.Id}" VerticalAlignment="Top" Width="199"/>
+        <TextBox x:Name="textBox_Name" HorizontalAlignment="Left" Height="23" Margin="83,33,0,0" TextWrapping="Wrap" Text="{Binding People.Name}" VerticalAlignment="Top" Width="199" />
+        <TextBox x:Name="textBox_Patronymic" HorizontalAlignment="Left" Height="23" Margin="83,56,0,0" TextWrapping="Wrap" Text="{Binding People.Patronymic}" VerticalAlignment="Top" Width="199"/>
+        <TextBox x:Name="textBox_lastName" HorizontalAlignment="Left" Height="23" Margin="83,79,0,0" TextWrapping="Wrap" Text="{Binding People.LastName}" VerticalAlignment="Top" Width="199"/>
+        <dxe:TextEdit x:Name="textBox_Phone" HorizontalAlignment="Left" Margin="83,102,0,0" Text="{Binding People.Phone}" VerticalAlignment="Top" Width="199" MaskAutoComplete="Strong" MaskType="Simple" Mask="+7-000-000-00-00"/>
+
+        <Button x:Name="button" Content="Save" HorizontalAlignment="Left" Margin="207,147,0,0" VerticalAlignment="Top" Width="75" Command="{Binding SavePeopleCommand}" Click="button_Click"/>
+    </Grid>
+</Window>
