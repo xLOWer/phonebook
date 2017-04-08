@@ -79,6 +79,7 @@
     <Compile Include="Model\Map\StudentMap.cs" />
     <Compile Include="Model\MainModel.cs" />
     <Compile Include="Model\Student.cs" />
+    <Compile Include="ViewModel\GroupViewModel.cs" />
     <Compile Include="ViewModel\StudentsViewModel.cs" />
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
