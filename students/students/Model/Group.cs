@@ -1,5 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace students.Model
 {
@@ -14,20 +16,15 @@ namespace students.Model
         }
 
         [Display(Name = "Краткое название")]
-        public string FullName { get
-            {   
-                string _FullName;
-                _FullName = GroupType.Substring(0, 1);
-                string[] _GroupName = GroupName.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
-                for (int i=0; i< _GroupName.Length; i++)
-                {
-                    _FullName = _FullName + _GroupName[i].ToString().Substring(0, 1);
-                }
-                _FullName = _FullName + Year.Substring(2, 2) + '-' + Number;
 
-                return _FullName ;
-            }
-            set { } }
+
+        public string FullName => GroupType[0] + 
+                    Regex.Split(GroupName, "[]").Aggregate("", (current, t) => current + t.ToUpper()[0]) + 
+                    "-" + 
+                    Year.ToString()[2] + 
+                    Year.ToString()[3] + 
+                    '-' + 
+                    Number;
 
         [Display(Name = "Тип")]
         public string GroupType {
