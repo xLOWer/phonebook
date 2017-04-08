@@ -8,7 +8,10 @@ namespace students.Model.Map
         {
             this.HasKey(k => k.Id);
 
-            this.Property(p => p.Name).IsOptional();
+            this.Property(p => p.GroupType).IsOptional();
+            this.Property(p => p.GroupName).IsOptional();
+            this.Property(p => p.Year).IsOptional();
+            this.Property(p => p.Number).IsOptional();
 
             ToTable("tbl_Groups");
         }
