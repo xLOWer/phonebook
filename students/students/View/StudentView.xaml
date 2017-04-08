@@ -13,32 +13,7 @@
              xmlns:dxdo="http://schemas.devexpress.com/winfx/2008/xaml/docking"
         Title="MainWindow" WindowState="Maximized">
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="30"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-        
-        <dxb:ToolBarControl Grid.Row="0" VerticalAlignment="Top" Height="30">
-            <dxb:BarButtonItem BarItemDisplayMode="ContentAndGlyph" Content="Добавить" Command="{Binding NewStudentCommand}"
-                               Glyph="{dx:DXImageOffice2013 Image=Add_16x16.png}" />
-            <dxb:BarButtonItem BarItemDisplayMode="ContentAndGlyph" Content="Удалить" Command="{Binding DeleteStudentCommand}" CommandParameter="{Binding SelectedStudent}" 
-                               Glyph="{dx:DXImageOffice2013 Image=Delete_16x16.png}" />
-            <dxb:BarButtonItem BarItemDisplayMode="ContentAndGlyph" Content="Обновить" Command="{Binding RefreshCommand}" 
-                               Glyph="{dx:DXImageOffice2013 Image=Refresh_16x16.png}" />
-            <dxb:BarButtonItem BarItemDisplayMode="ContentAndGlyph" Content="Сохранить" Command="{Binding SaveCommand}" 
-                               Glyph="{dx:DXImageOffice2013 Image=Save_16x16.png}" />
-            
-            <dxb:BarItemSeparator/>
-            
-            <dxb:BarButtonItem BarItemDisplayMode="ContentAndGlyph" Content="Оправдать" Command="{Binding TurnOffExpelledStudentCommand}"
-                               Glyph="{dx:DXImageOffice2013 Image=Add_16x16.png}" IsVisible="{DXBinding IsOnExpellation}"/>
-            
-            <dxb:BarButtonItem BarItemDisplayMode="ContentAndGlyph" Content="Отправить на отчисление" Command="{Binding TurnOnExpelledStudentCommand}" CommandParameter="{Binding SelectedStudent}" 
-                               Glyph="{dx:DXImageOffice2013 Image=_16x16.png}" IsVisible="{DXBinding '!IsOnExpellation'}"/>
-            
-            <dxb:BarButtonItem BarItemDisplayMode="ContentAndGlyph" Content="Отчислить" Command="{Binding DeleteStudentCommand}" CommandParameter="{Binding SelectedStudent}" 
-                               Glyph="{dx:DXImageOffice2013 Image=Delete_16x16.png}" IsVisible="{DXBinding IsOnExpellation}"/>
-        </dxb:ToolBarControl>
+
         <TabControl Grid.Row="1">
             <TabItem Header="Список студентов">
 
@@ -70,14 +45,57 @@
                         <dxg:GridControl.View>
                             <dxg:TableView AllowPerPixelScrolling="True" ShowTotalSummary="True"/>
                         </dxg:GridControl.View>
-                        
+
                         <dxg:GridColumn IsSmart="True" FieldName="LastName" Width="Auto"/>
                         <dxg:GridColumn IsSmart="True" FieldName="FirstName" Width="Auto"/>
                         <dxg:GridColumn IsSmart="True" FieldName="Patronymic" Width="Auto"/>
                         <dxg:GridColumn IsSmart="True" FieldName="ContactPhone" Width="Auto"/>
                         <dxg:GridColumn IsSmart="True" FieldName="Group" Header="Группа" Width="Auto"/>
-                        
+
                     </dxg:GridControl>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Предмет">
+                <Grid Margin="5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0*"/>
+                        <ColumnDefinition Width="15*"/>
+                        <ColumnDefinition Width="220*"/>
+                        <ColumnDefinition Width="491*"/>
+                    </Grid.ColumnDefinitions>
+                    <dxg:GridControl AutoGenerateColumns="AddNew" 
+                             EnableSmartColumnsGeneration="True" 
+                             ItemsSource="{Binding ExpelledStudentList}"
+                             SelectedItem="{Binding SelectedStudent}" Grid.ColumnSpan="4" Margin="0,34,0,0">
+                        <dxg:GridControl.View>
+                            <dxg:TableView AllowPerPixelScrolling="True" ShowTotalSummary="True"/>
+                        </dxg:GridControl.View>
+
+                        <dxg:GridColumn IsSmart="True" FieldName="Name" Header="Название" Width="Auto"/>
+                        <dxg:GridColumn IsSmart="True" FieldName="Type" Header="Тип" Width="Auto"/>
+                        <dxg:GridColumn IsSmart="True" FieldName="LectureHall" Header="Аудитория" Width="Auto"/>
+                    </dxg:GridControl>
+                    <dxb:ToolBarControl Grid.Row="0" VerticalAlignment="Top" Height="30" Grid.ColumnSpan="4" Margin="-2,-1,-32,0">
+                        <dxb:BarButtonItem BarItemDisplayMode="ContentAndGlyph" Content="Добавить" Command="{Binding NewStudentCommand}"
+                               Glyph="{dx:DXImageOffice2013 Image=Add_16x16.png}" />
+                        <dxb:BarButtonItem BarItemDisplayMode="ContentAndGlyph" Content="Удалить" Command="{Binding DeleteStudentCommand}" CommandParameter="{Binding SelectedStudent}" 
+                               Glyph="{dx:DXImageOffice2013 Image=Delete_16x16.png}" />
+                        <dxb:BarButtonItem BarItemDisplayMode="ContentAndGlyph" Content="Обновить" Command="{Binding RefreshCommand}" 
+                               Glyph="{dx:DXImageOffice2013 Image=Refresh_16x16.png}" />
+                        <dxb:BarButtonItem BarItemDisplayMode="ContentAndGlyph" Content="Сохранить" Command="{Binding SaveCommand}" 
+                               Glyph="{dx:DXImageOffice2013 Image=Save_16x16.png}" />
+
+                        <dxb:BarItemSeparator/>
+
+                        <dxb:BarButtonItem BarItemDisplayMode="ContentAndGlyph" Content="Оправдать" Command="{Binding TurnOffExpelledStudentCommand}"
+                               Glyph="{dx:DXImageOffice2013 Image=Add_16x16.png}" IsVisible="{DXBinding IsOnExpellation}"/>
+
+                        <dxb:BarButtonItem BarItemDisplayMode="ContentAndGlyph" Content="Отправить на отчисление" Command="{Binding TurnOnExpelledStudentCommand}" CommandParameter="{Binding SelectedStudent}" 
+                               Glyph="{dx:DXImageOffice2013 Image=_16x16.png}" IsVisible="{DXBinding !IsOnExpellation}"/>
+
+                        <dxb:BarButtonItem BarItemDisplayMode="ContentAndGlyph" Content="Отчислить" Command="{Binding DeleteStudentCommand}" CommandParameter="{Binding SelectedStudent}" 
+                               Glyph="{dx:DXImageOffice2013 Image=Delete_16x16.png}" IsVisible="{DXBinding IsOnExpellation}"/>
+                    </dxb:ToolBarControl>
                 </Grid>
             </TabItem>
         </TabControl>
