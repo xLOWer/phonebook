@@ -89,7 +89,7 @@
                     </dxb:ToolBarControl>
                 </Grid>
             </TabItem>
-            <TabItem Header="Группы" DataContext="{Binding GroupViewModel.Create()}">
+            <TabItem Header="Группы" DataContext="{Binding GroupViewModel}">
                      <Grid Margin="5">
                     
                     <dxg:GridControl AutoGenerateColumns="AddNew" 
